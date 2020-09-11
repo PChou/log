@@ -2,8 +2,6 @@
 // Use of this source code is governed by a MIT
 // license that can be found in the LICENSE file.
 
-// +build !windows, !arm64
-
 package log
 
 import (
@@ -17,5 +15,5 @@ var (
 )
 
 func dup2(f *os.File, fd int) error {
-	return syscall.Dup2(int(f.Fd()), fd)
+	return syscall.Dup3(int(f.Fd()), fd, 0)
 }
